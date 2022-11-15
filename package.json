@@ -1,0 +1,24 @@
+{
+  "name": "proj-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "standard",
+    "start": "browser-sync start --server --startPath src/index.html ",
+    "reload": "browser-sync reload --server --startPath src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Angus-1/proj-3.git"
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/Angus-1/proj-3/issues"
+  },
+  "homepage": "https://github.com/Angus-1/proj-3#readme",
+  "devDependencies": {
+    "standard": "^17.0.0"
+  }
+}
