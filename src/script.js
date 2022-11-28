@@ -161,7 +161,7 @@ window.onload = function () {
       "street fighter","overwatch","fortnite","among us","team fortress","destiny","the sims","red dead","super mario","super smash bros", "god of war","bioshock","portal","bloodborne",
     "dark souls","world of warcraft","stardew valley","terraria","undertale","pac man","borderlands","mortal kombat","crash bandicoot","metal gear solid","resident evil","mass effect","tekken",
     "half life","uncharted","elden ring","tony hawk pro skater", "diablo","the legend of zelda","space invaders","metroid","metal slug","fallout new vegas","the witcher","max payne","cuphead",
-    "path of exile","dead cells","starbound","rust","ark survival evolved","final fantasy","angry birds","need for speed"
+    "path of exile","dead cells","starbound","rust","ark survival evolved","final fantasy","angry birds","need for speed","valorant","apex legends",
     ]
     ];
 
