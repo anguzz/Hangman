@@ -97,22 +97,17 @@ window.onload = function () {
     context.stroke(); 
 }
 
-   frame1 = function() {
+   base = function() {
     drawPiece (0, 150, 150, 150);
-   };
-   
-   frame2 = function() {
     drawPiece (10, 0, 10, 600);
    };
-  
-   frame3 = function() {
+   
+   knott = function() {
     drawPiece (0, 5, 70, 5);
-   };
-  
-   frame4 = function() {
     drawPiece (60, 5, 60, 15);
    };
   
+
    torso = function() {
     drawPiece (60, 36, 60, 70);
    };
@@ -133,7 +128,7 @@ window.onload = function () {
     drawPiece (60, 70, 20, 100);
    };
   
-  drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, frame4, frame3, frame2, frame1]; 
+  drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, knott, base]; 
 
 
    check = function () {
@@ -175,7 +170,7 @@ window.onload = function () {
     buttons();
 
     guesses = [ ];
-    health = 10;
+    health = 8;
     counter = 0;
     space = 0;
     result();
