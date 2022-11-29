@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "test": "standard",
-    "start": "browser-sync start --server --startPath src/index.html ",
+    "test": "standard && vnu --skip-non-html --Werror *.html",
+    "start": "browser-sync start --server --startPath src/index.html --files '*.html,*.css,*.js'",
     "reload": "browser-sync reload --server --startPath src/index.html"
   },
   "repository": {
