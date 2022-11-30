@@ -14,8 +14,10 @@ body {
 
   
   canvas {
-    color: #fff;
+    background-color: #6B91A4;
     padding: 15px;
+    margin: auto;
+    width:auto;
   }
   
   h1, h2, h3 {
@@ -55,7 +57,7 @@ body {
     width: 35px;
     height: 30px;
     padding-top: 10px;
-    background: #fff;
+    background: #ffffff;
     color: #1F2937;
     cursor: pointer;
     -moz-border-radius: 5px;
