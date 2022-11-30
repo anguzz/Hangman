@@ -1,6 +1,6 @@
 window.onload = function () {
 
-  var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+  var alph = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
         'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
         't', 'u', 'v', 'w', 'x', 'y', 'z'];
   
@@ -19,11 +19,11 @@ window.onload = function () {
   var buttons = function () {
   Buttons = document.getElementById('buttons');
     letters = document.createElement('ul');
-    for (var i = 0; i < alphabet.length; i++) {
+    for (var i = 0; i < alph.length; i++) {
       letters.id = 'alphabet';
       list = document.createElement('li');
       list.id = 'letter';
-      list.innerHTML = alphabet[i];
+      list.innerHTML = alph[i];
       check();
       Buttons.appendChild(letters);
       letters.appendChild(list);
@@ -31,12 +31,9 @@ window.onload = function () {
   }
     
   
-  // Select Catagory
   var selectGame = function () {
     chooseGame === gameList[0];
-   
   }
-
 
    result = function () {
     wordHolder = document.getElementById('hold');
@@ -72,7 +69,6 @@ window.onload = function () {
     }
   }
 
-      
   var animate = function () {
     var drawHealth = health ;
     drawArray[drawHealth]();
@@ -101,22 +97,17 @@ window.onload = function () {
     context.stroke(); 
 }
 
-   frame1 = function() {
+   base = function() {
     drawPiece (0, 150, 150, 150);
-   };
-   
-   frame2 = function() {
     drawPiece (10, 0, 10, 600);
    };
-  
-   frame3 = function() {
+   
+   knott = function() {
     drawPiece (0, 5, 70, 5);
-   };
-  
-   frame4 = function() {
     drawPiece (60, 5, 60, 15);
    };
   
+
    torso = function() {
     drawPiece (60, 36, 60, 70);
    };
@@ -137,7 +128,7 @@ window.onload = function () {
     drawPiece (60, 70, 20, 100);
    };
   
-  drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, frame4, frame3, frame2, frame1]; 
+  drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, knott, base]; 
 
 
    check = function () {
@@ -163,11 +154,15 @@ window.onload = function () {
   }
   
     
-
+//currently not using numbers/capitalized letters since input is from declared 1-26 lowercase alphabet
   playGame = function () {
     gameList = [
       ["halo", "skyrim", "call of duty", "fallout", "pokemon","minecraft","grand theft auto", "league of legends","rocket league","tetris","asteroids","roblox","counter strike",
-      "street fighter","overwatch","fortnite","among us","team fortress","destiny","the sims","red dead","mario","super smash bros"]
+      "street fighter","overwatch","fortnite","among us","team fortress","destiny","the sims","red dead","super mario","super smash bros", "god of war","bioshock","portal","bloodborne",
+    "dark souls","world of warcraft","stardew valley","terraria","undertale","pac man","borderlands","mortal kombat","crash bandicoot","metal gear solid","resident evil","mass effect","tekken",
+    "half life","uncharted","elden ring","tony hawk pro skater", "diablo","the legend of zelda","space invaders","metroid","metal slug","fallout new vegas","the witcher","max payne","cuphead",
+    "path of exile","dead cells","starbound","rust","ark survival evolved","final fantasy","angry birds","need for speed","valorant","apex legends",
+    ]
     ];
 
     chooseGame = gameList[Math.floor(Math.random() * gameList.length)];
@@ -177,7 +172,7 @@ window.onload = function () {
     buttons();
 
     guesses = [ ];
-    health = 10;
+    health = 8;
     counter = 0;
     space = 0;
     result();

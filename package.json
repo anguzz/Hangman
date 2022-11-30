@@ -2,11 +2,13 @@
   "name": "proj-3",
   "version": "1.0.0",
   "description": "",
-  "main": "index.html",
+  "main": "script.js",
   "scripts": {
-    "test": "standard && vnu --skip-non-html --Werror *.html",
-    "start": "browser-sync start --server --startPath src/index.html --files '*.html,*.css,*.js'",
-    "reload": "browser-sync reload --server --startPath src/index.html"
+    "test": "standard",
+    "browsersync":"browser-sync start --server --startPath src/index.html ",
+    "tailwind":"npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "reload": "browser-sync reload --server --startPath src/index.html",
+    "start":"npm-run-all --parallel browsersync tailwind"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,10 @@
   },
   "homepage": "https://github.com/Angus-1/proj-3#readme",
   "devDependencies": {
-    "standard": "^17.0.0"
+    "standard": "^17.0.0",
+    "tailwindcss": "^3.2.4"
+  },
+  "dependencies": {
+    "browser-sync": "^2.27.10"
   }
 }
