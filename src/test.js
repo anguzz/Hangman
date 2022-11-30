@@ -2,12 +2,17 @@ window.onload = function () {
   const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
     'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
     't', 'u', 'v', 'w', 'x', 'y', 'z']
-
-  let gameList = [
-    ['halo', 'skyrim', 'call of duty', 'fallout', 'pokemon', 'minecraft', 'grand theft auto', 'league of legends', 'rocket league', 'tetris', 'asteroids', 'roblox', 'counter strike',
-      'street fighter', 'overwatch', 'fortnite', 'among us', 'team fortress', 'destiny', 'the sims', 'red dead', 'mario', 'super smash bros']
+  
+  //moved this up here because of my initilizeGame() function
+  const gameList = [
+    ["halo", "skyrim", "call of duty", "fallout", "pokemon","minecraft","grand theft auto", "league of legends","rocket league","tetris","asteroids","roblox","counter strike",
+      "street fighter","overwatch","fortnite","among us","team fortress","destiny","the sims","red dead","super mario","super smash bros", "god of war","bioshock","portal","bloodborne",
+    "dark souls","world of warcraft","stardew valley","terraria","undertale","pac man","borderlands","mortal kombat","crash bandicoot","metal gear solid","resident evil","mass effect","tekken",
+    "half life","uncharted","elden ring","tony hawk pro skater", "diablo","the legend of zelda","space invaders","metroid","metal slug","fallout new vegas","the witcher","max payne","cuphead",
+    "path of exile","dead cells","starbound","rust","ark survival evolved","final fantasy","angry birds","need for speed","valorant","apex legends",
+    ]
   ]
-  let isPlaying = "false"
+
   let chooseGame
   let gameWord
   let guess
@@ -15,12 +20,18 @@ window.onload = function () {
   let health
   let counter
   let space
-  let btnNull = new Array()
+  //had to move these up here or else i'd get errors that they weren't defined
+  // I don't know why
   Stickman = document.getElementById('stickman')
   context = Stickman.getContext('2d')
+  //-----Local Storage variables-----//
+  //array that keeps track of keys that have been pressed, in other words,
+  //which letters have been selected / guessed
+  let keyPressed = []
+  //counter for drawing stickman on game continuation
+  let wrong = 8
 
-  const showHealth = document.getElementById('health')
-
+  let showHealth = document.getElementById("health");
 
   const buttons = function () {
     Buttons = document.getElementById('buttons')
@@ -30,21 +41,12 @@ window.onload = function () {
         list = document.createElement('li')
         list.id = 'letter'
         list.innerHTML = alphabet[i]
-        if (localStorage.btnNull) {
-          for (let k = 0; k < btnNull.length; ++k) {
-            if (btnNull[k] === list.innerHTML) {
-              list.setAttribute("disabled", "")
-              list.setAttribute("class", "active")
-            }
-          }
-        }
         check()
         Buttons.appendChild(letters)
         letters.appendChild(list)
       }
   }
   
-
   // Select Catagory
   const selectGame = function () {
     chooseGame === gameList[0]
@@ -69,8 +71,6 @@ window.onload = function () {
       wordHolder.appendChild(correct)
       correct.appendChild(guess)
     }
-    // local storage
-    localStorage.setItem('guesses', JSON.stringify(guesses))
   }
 
   comments = function () {
@@ -84,123 +84,102 @@ window.onload = function () {
       }
     }
   }
-
-  const animate = function () {
-    const drawHealth = health
-    drawArray[drawHealth]()
+  //changed the function to recieve an argument 
+  //instead of directly setting drawhealth equal to health
+  //did this for local storage functionality -- Michael
+  let animate = function (wGuesses) {
+    let drawHealth = wGuesses;
+    drawArray[drawHealth]();
   }
 
-  canvas = function () {
-    //Stickman = document.getElementById('stickman')
-    //context = Stickman.getContext('2d')
-    context.beginPath()
-    context.strokeStyle = '#fff'
-    context.lineWidth = 2
-  }
-
-  head = function () {
-    //Stickman = document.getElementById('stickman')
-    //context = Stickman.getContext('2d')
-    context.beginPath()
-    context.arc(60, 25, 10, 0, Math.PI * 2, true)
-    context.stroke()
-  }
-
-  drawPiece = function ($path_fr_x, $path_fr_y, $path_to_x, $path_to_y) {
-    //Stickman = document.getElementById('stickman')
-    //context = Stickman.getContext('2d')
-    context.moveTo($path_fr_x, $path_fr_y)
-    context.lineTo($path_to_x, $path_to_y)
-    context.stroke()
-  }
-
-  frame1 = function () {
-    drawPiece(0, 150, 150, 150)
-  }
-
-  frame2 = function () {
-    drawPiece(10, 0, 10, 600)
-  }
-
-  frame3 = function () {
-    drawPiece(0, 5, 70, 5)
-  }
-
-  frame4 = function () {
-    drawPiece(60, 5, 60, 15)
-  }
-
-  torso = function () {
-    drawPiece(60, 36, 60, 70)
-  }
-
-  rightArm = function () {
-    drawPiece(60, 46, 100, 50)
-  }
-
-  leftArm = function () {
-    drawPiece(60, 46, 20, 50)
-  }
-
-  rightLeg = function () {
-    drawPiece(60, 70, 100, 100)
-  }
-
-  leftLeg = function () {
-    drawPiece(60, 70, 20, 100)
-  }
-
-  drawArray = [rightLeg, leftLeg, rightArm, leftArm, torso, head, frame4, frame3, frame2, frame1]
-
-  test = function () {
-    if (localStorage.btnNull) {
-      showHealth.innerHTML = '💙' + health
-      for (let i = 0; i < btnNull.length; i++) {
-        for (let k = 0; k < gameWord.length; k++) {
-          if (gameWord[k] === btnNull[i]) {
-            guesses[k].innerHTML = btnNull[i]
-          }
-      
-          const j = (gameWord.indexOf(guess))
-          if (j === -1) {
-            animate()
-          }
-        }
-      }
+  canvas =  function(){
+    context.beginPath();
+    context.strokeStyle = "#fff";
+    context.lineWidth = 2;
+  };
+  
+    head = function(){
+      context.beginPath();
+      context.arc(60, 25, 10, 0, Math.PI*2, true);
+      context.stroke();
     }
-  }
+    
+  drawPiece = function($path_fr_x, $path_fr_y, $path_to_x, $path_to_y) {
+    context.moveTo($path_fr_x, $path_fr_y);
+    context.lineTo($path_to_x, $path_to_y);
+    context.stroke(); 
+}
+
+   base = function() {
+    drawPiece (0, 150, 150, 150);
+    drawPiece (10, 0, 10, 600);
+   };
+   
+   knott = function() {
+    drawPiece (0, 5, 70, 5);
+    drawPiece (60, 5, 60, 15);
+   };
+  
+   torso = function() {
+    drawPiece (60, 36, 60, 70);
+   };
+  
+   rightArm = function() {
+    drawPiece (60, 46, 100, 50);
+   };
+  
+   leftArm = function() {
+    drawPiece (60, 46, 20, 50);
+   };
+  
+   rightLeg = function() {
+    drawPiece (60, 70, 100, 100);
+   };
+  
+   leftLeg = function() {
+    drawPiece (60, 70, 20, 100);
+   };
+  
+  drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, knott, base];
 
   check = function () {
-    var test = 'false'
-    if (localStorage.btnNull) {
-      for(let i = 0; i < btnNull.length; ++i) {
-        if (btnNull[i] === list.innerHTML) {
+    //to see if a key was previously pressed before continuing the game
+    let press = 'false'
+    //all this code before the click event is to update the display
+    //with all the previous information from the game before it was continued
+    //
+    //so far this is the best way I could think of to implement game continuation
+    //if you guys have any better implementations feel free to change the code --Micheal
+    if (localStorage.keyPressed) {
+      for (let i = 0; i < keyPressed.length; ++i) {
+        if (keyPressed[i] === list.innerHTML) {
           list.setAttribute('class', 'active')
-          test = 'true'
+          press = 'true'
           for (let k = 0; k < gameWord.length; k++) {
-            if (gameWord[k] === btnNull[i]) {
-              guesses[k].innerHTML = btnNull[i]
+            if (gameWord[k] === keyPressed[i]) {
+              guesses[k].innerHTML = keyPressed[i]
             }
           }
-          const l = (gameWord.indexOf(guess))
+          const l = (gameWord.indexOf(keyPressed[i]))
           if (l === -1) {
-          comments()
-          animate()
-        } else {
-          comments()
-        }
+            wrong -= 1
+            comments()
+            animate(wrong)
+          } else {
+            comments()
+          }
         }
       }
     }
     list.onclick = function () {
-      if (test === 'false') {
+      if (press === 'false') {
         const guess = (this.innerHTML)
         this.setAttribute('class', 'active')
-        this.onclick = null
         //local storage
-        btnNull.push(guess)
-        localStorage.setItem('btnNull', JSON.stringify(btnNull))
-        console.log(btnNull)
+        keyPressed.push(guess)
+        localStorage.setItem('keyPressed', JSON.stringify(keyPressed))
+        //debug purposes
+        console.log(keyPressed)
         for (let i = 0; i < gameWord.length; i++) {
           if (gameWord[i] === guess) {
             guesses[i].innerHTML = guess
@@ -213,63 +192,60 @@ window.onload = function () {
         if (j === -1) {
           health -= 1
           comments()
-          animate()
+          animate(health)
           // local storage
           localStorage.setItem('health', health)
         } else {
             comments()
         }
-      } else {
-        this.onclick = null
-
       }
+      this.onclick = null
     }
   }
 
   setLocalStorage = function () {
-    localStorage.setItem('isPlaying', isPlaying)
     localStorage.setItem('chooseGame', chooseGame)
     localStorage.setItem('gameWord', gameWord)
-    localStorage.setItem('guesses', JSON.stringify(guesses))
     localStorage.setItem('health', health)
     localStorage.setItem('counter', counter)
   }
 
+  //this function is used to setup a new game
   initializeGame = function () {
-    isPlaying = 'true'
     chooseGame = gameList[Math.floor(Math.random() * gameList.length)]
     gameWord = chooseGame[Math.floor(Math.random() * chooseGame.length)]
     gameWord = gameWord.replace(/\s/g, '-')
     guesses = []
-    btnNull = new Array()
-    health = 10
+    keyPressed = []
+    health = 8
     counter = 0
     space = 0
+    wrong = health
     setLocalStorage();
   }
 
   function playGame() {
-    if (localStorage.isPlaying) {
-      isPlaying = localStorage.getItem("isPlaying")
-      if (isPlaying === 'true') {
-        chooseGame = localStorage.getItem('chooseGame')
-        gameWord = localStorage.getItem('gameWord')
-        health = parseInt(localStorage.getItem('health'))
-        counter = parseInt(localStorage.getItem('counter'))
-        space = localStorage.getItem('space')
-        btnNull = JSON.parse(localStorage.getItem('btnNull'))
-        console.log(btnNull)
-        context.clearRect(0, 0, 400, 400)
+    //if game is being continued, use local storage
+    //to set variables to previous values and continue the game
+    if (localStorage.chooseGame) {
+      chooseGame = localStorage.getItem('chooseGame')
+      gameWord = localStorage.getItem('gameWord')
+      health = parseInt(localStorage.getItem('health'))
+      counter = parseInt(localStorage.getItem('counter'))
+      //if checks if localStorage.keyPressed exists before assigning
+      //it to the variable, to avoid potential errors
+      if (localStorage.keyPressed) {
+        keyPressed = JSON.parse(localStorage.getItem('keyPressed'))
       }
-    } else {
+      //debug purposes
+      console.log(keyPressed)
+    } else { // else setup a new game
       initializeGame()
     }
-    //initializeGame()
+    //debug purposes
     console.log(gameWord)
     result()
     buttons()
-
-   
     comments()
     selectGame()
     canvas()
@@ -281,8 +257,8 @@ window.onload = function () {
     correct.parentNode.removeChild(correct)
     letters.parentNode.removeChild(letters)
     context.clearRect(0, 0, 400, 400)
+    //clear the local storage
     localStorage.clear()
-    isPlaying = "false"
     playGame()
   }
 }
