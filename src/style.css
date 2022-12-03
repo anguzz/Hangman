@@ -10,7 +10,7 @@ body {
 }
 
 canvas {
-  background-color: #678bbd;
+  background-color: #355692;
   padding: 15px;
   margin: auto;
   width: auto;
@@ -156,17 +156,15 @@ button:hover {
 }
 footer {
   text-align: center;
-  background: #111;
+  background: #355692;
   color: #bfe5fc;
   position : absolute;
   bottom : 0;
-  width:100vw;
-  font-size:1.2rem;
-  padding-bottom:20px;
-  padding-top:12px;
-  padding-left:20px;
-  padding-right:20px;
+  width:100%;
+  font-size:1rem;
+  padding:10px;
   font-family: "Open Sans", sans-serif;
+  
 }
 
 
