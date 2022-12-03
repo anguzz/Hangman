@@ -559,6 +559,10 @@ video {
   display: none;
 }
 
+.content-center {
+  align-content: center;
+}
+
 .pt-3 {
   padding-top: 0.75rem;
 }

@@ -21,7 +21,7 @@ h2,
 h3 {
   font-weight: 100;
   text-transform: uppercase;
-  margin: 5px 0;
+
   font-family: "Open Sans", sans-serif;
 
 }
@@ -139,7 +139,6 @@ button {
   cursor: pointer;
   font-size: 1.2em;
   font-family: "Open Sans", sans-serif;
-
   padding: 18px 10px;
   width: 180px;
   margin: 10px;
@@ -154,40 +153,6 @@ button:hover {
   border: solid 1px #fff;
   color: #1F2937;
 }
-footer {
-  text-align: center;
-  background: #355692;
-  color: #bfe5fc;
-  position : absolute;
-  bottom : 0;
-  width:100%;
-  font-size:1rem;
-  padding:10px;
-  font-family: "Open Sans", sans-serif;
-  
-}
-
-
-.footer-bottom p{
-      float: left;
-  }
- 
-  .footer-bottom p a{
-    color:#44bae8;
-  }
-  
-  .footer-menu{
-    float: right;
-  }
-  .footer-menu ul{
-    display: flex;
-
-  }
-  .footer-menu ul li{
-  padding-right: 10px;
-  display: block;
-
-  }
 @media (max-width: 800px) {
   #alphabet {
     padding: 0 0 0 15px;
