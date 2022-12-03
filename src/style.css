@@ -3,7 +3,6 @@
 
 body {
   background: #1F2937;
-  font-family: "MedievalSharp";
   color: #fff;
   height: 100%;
   text-align: center;
@@ -20,7 +19,6 @@ canvas {
 h1,
 h2,
 h3 {
-  font-family: "MedievalSharp";
   font-weight: 100;
   text-transform: uppercase;
   margin: 5px 0;
