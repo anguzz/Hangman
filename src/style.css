@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Codystar:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 
 body {
@@ -22,6 +22,8 @@ h3 {
   font-weight: 100;
   text-transform: uppercase;
   margin: 5px 0;
+  font-family: "Open Sans", sans-serif;
+
 }
 
 h1 {
@@ -34,12 +36,16 @@ h2 {
 
 p {
   font-size: 1.6em;
+  font-family: "Open Sans", sans-serif;
+
 }
 
 #alphabet {
   margin: 15px auto;
   padding: 0;
   max-width: 900px;
+  font-family: "Open Sans", sans-serif;
+
 }
 
 #alphabet:after {
@@ -77,6 +83,8 @@ p {
   display: block;
   padding: 0;
   display: block;
+  font-family: "Open Sans", sans-serif;
+
 }
 
 #guessedLetter li {
