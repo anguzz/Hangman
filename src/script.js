@@ -12,6 +12,7 @@ window.onload = function () {
     "path of exile","dead cells","starbound","rust","ark survival evolved","final fantasy","angry birds","need for speed","valorant","apex legends",
     ]
   ]
+  gameDone = new Boolean(false)
 
   let chooseGame
   let gameWord
@@ -77,13 +78,17 @@ window.onload = function () {
     Buttons = document.getElementById('buttons')
     showHealth.innerHTML = '💙' + health
     if (health < 1) {
+      document.getElementById('reset').style.visibility = 'visible'
+      gameDone = Boolean(true)
       showHealth.innerHTML = 'Game Over <br><br> The game was ' + gameWord
       Buttons.style.display = 'none'
     }
     for (let i = 0; i < guesses.length; i++) {
       if (counter + space === guesses.length) {
+        gameDone = Boolean(true)
         showHealth.innerHTML = 'You Win!'
         Buttons.style.display = 'none'
+        document.getElementById('reset').style.visibility = 'visible'
       }
     }
   }
@@ -242,6 +247,7 @@ window.onload = function () {
       if (localStorage.keyPressed) {
         keyPressed = JSON.parse(localStorage.getItem('keyPressed'))
       }
+      document.getElementById('reset').style.visibility = 'hidden'
       //debug purposes
       console.log(keyPressed)
     } else { // else setup a new game
@@ -258,7 +264,10 @@ window.onload = function () {
 
   playGame()
 
+
   document.getElementById('reset').onclick = function () {
+    if (gameDone) {
+    document.getElementById('reset').style.visibility = 'hidden'
     correct.parentNode.removeChild(correct)
     letters.parentNode.removeChild(letters)
     context.clearRect(0, 0, 400, 400)
@@ -266,6 +275,9 @@ window.onload = function () {
     //clear the local storage
     localStorage.clear()
     playGame()
+    gameDone = Boolean(false)
+    
+    }
   }
 }
 

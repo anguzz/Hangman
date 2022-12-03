@@ -547,6 +547,18 @@ video {
   }
 }
 
+.visible {
+  visibility: visible;
+}
+
+.block {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 .pt-3 {
   padding-top: 0.75rem;
 }
@@ -558,10 +570,6 @@ video {
 
 .font-bold {
   font-weight: 700;
-}
-
-.lowercase {
-  text-transform: lowercase;
 }
 
 .ring {
