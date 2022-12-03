@@ -547,8 +547,16 @@ video {
   }
 }
 
+.visible {
+  visibility: visible;
+}
+
 .block {
   display: block;
+}
+
+.hidden {
+  display: none;
 }
 
 .pt-3 {
